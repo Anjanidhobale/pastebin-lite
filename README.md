@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pastebin Lite
 
-## Getting Started
+A lightweight Pastebin-like web application that allows users to create text pastes and share them via a unique URL. Pastes can optionally expire based on time (TTL) or number of views.
 
-First, run the development server:
+This project was built as a take-home assignment and is optimized for automated evaluation.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Create a paste with arbitrary text
+- Receive a shareable link
+- View paste content via API or browser
+- Optional expiration:
+  - Time-based (TTL)
+  - View-count based
+- Deterministic time testing support
+- Serverless-safe persistence
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework:** Next.js (App Router)
+- **Runtime:** Node.js
+- **Persistence:** Redis (Vercel Redis / Upstash-compatible)
+- **Hosting:** Vercel
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Persistence Layer
 
-## Deploy on Vercel
+The application uses **Redis** as a persistence layer.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Reasoning:
+- Works reliably in serverless environments
+- Data survives across requests and instances
+- Supports atomic operations needed for view counting
+- Fast enough for automated testing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Redis connection details are provided via environment variables and are **not committed** to the repository.
+
+---
+
+## API Endpoints
+
+### Health Check
