@@ -42,7 +42,7 @@ https://pastebin-lite-vercel-nine.vercel.app
 
 --- 
 ### API Endpoints
-**- Create Paste**
+**Create Paste**
 POST /api/pastes
 
 -Request Body:
@@ -96,14 +96,14 @@ After deletion:
 ---
 ## Local Development
 
-1️⃣ Install dependencies
+1️⃣ Install dependencies: 
 npm install
 
-2️⃣ Set environment variables
-vercel link
+2️⃣ Set environment variables: 
+vercel link 
 vercel env pull
 
-3️⃣ Run the app
+3️⃣ Run the app: 
 npm run dev
 
 **App runs at:**
